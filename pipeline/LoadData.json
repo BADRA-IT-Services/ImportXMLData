@@ -406,8 +406,7 @@
 												"path": "['Note']"
 											},
 											"sink": {
-												"name": "Note",
-												"type": "String"
+												"name": "Note"
 											}
 										},
 										{
@@ -591,7 +590,8 @@
 											}
 										}
 									],
-									"collectionReference": "$['ACES']['App']"
+									"collectionReference": "$['ACES']['App']",
+									"mapComplexValuesToString": true
 								}
 							},
 							"inputs": [
