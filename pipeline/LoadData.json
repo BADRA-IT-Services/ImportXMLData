@@ -617,7 +617,8 @@
 					{
 						"activity": "ReadExcelFileData",
 						"dependencyConditions": [
-							"Succeeded"
+							"Succeeded",
+							"Failed"
 						]
 					}
 				],
