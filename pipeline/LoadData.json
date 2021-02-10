@@ -796,6 +796,42 @@
 									"type": "DatasetReference"
 								}
 							]
+						},
+						{
+							"name": "Deletefile",
+							"type": "Delete",
+							"dependsOn": [
+								{
+									"activity": "XMLData",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "xmlfilename",
+									"type": "DatasetReference"
+								},
+								"enableLogging": false,
+								"storeSettings": {
+									"type": "AzureFileStorageReadSettings",
+									"recursive": true,
+									"wildcardFileName": {
+										"value": "@{item().name}",
+										"type": "Expression"
+									},
+									"enablePartitionDiscovery": false
+								}
+							}
 						}
 					]
 				}
