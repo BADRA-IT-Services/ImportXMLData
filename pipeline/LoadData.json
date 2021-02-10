@@ -430,7 +430,7 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['BaseVehicle']['@id']"
+												"path": "['BaseVehicle']['@id']"
 											},
 											"sink": {
 												"name": "BaseVehicleID",
@@ -439,7 +439,7 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['BaseVehicle']['_value_']"
+												"path": "['BaseVehicle']['_value_']"
 											},
 											"sink": {
 												"name": "BaseVehicle",
@@ -448,7 +448,7 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['SubModel']['@id']"
+												"path": "['SubModel']['@id']"
 											},
 											"sink": {
 												"name": "SubModelID",
@@ -457,7 +457,7 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['SubModel']['_value_']"
+												"path": "['SubModel']['_value_']"
 											},
 											"sink": {
 												"name": "SubModel",
@@ -466,7 +466,7 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['EngineBase']['@id']"
+												"path": "['EngineBase']['@id']"
 											},
 											"sink": {
 												"name": "EngineBaseID",
@@ -475,7 +475,7 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['EngineBase']['_value_']"
+												"path": "['EngineBase']['_value_']"
 											},
 											"sink": {
 												"name": "EngineBase",
@@ -484,7 +484,7 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['EngineVIN']['@id']"
+												"path": "['EngineVIN']['@id']"
 											},
 											"sink": {
 												"name": "EngineVINID",
@@ -493,7 +493,7 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['EngineVIN']['_value_']"
+												"path": "['EngineVIN']['_value_']"
 											},
 											"sink": {
 												"name": "EngineVIN",
@@ -502,7 +502,7 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['Region']['@id']"
+												"path": "['Region']['@id']"
 											},
 											"sink": {
 												"name": "RegionID",
@@ -511,7 +511,7 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['Region']['_value_']"
+												"path": "['Region']['_value_']"
 											},
 											"sink": {
 												"name": "Region",
@@ -520,7 +520,7 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['Qty']"
+												"path": "['Qty']"
 											},
 											"sink": {
 												"name": "Qty",
@@ -529,7 +529,16 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['PartType']['@id']"
+												"path": "['Note']"
+											},
+											"sink": {
+												"name": "Note",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['PartType']['@id']"
 											},
 											"sink": {
 												"name": "PartTypeID",
@@ -538,7 +547,7 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['PartType']['_value_']"
+												"path": "['PartType']['_value_']"
 											},
 											"sink": {
 												"name": "PartType",
@@ -547,7 +556,7 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['Position']['@id']"
+												"path": "['Position']['@id']"
 											},
 											"sink": {
 												"name": "PositionID",
@@ -556,7 +565,7 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['Position']['_value_']"
+												"path": "['Position']['_value_']"
 											},
 											"sink": {
 												"name": "Position",
@@ -565,7 +574,7 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['Part']"
+												"path": "['Part']"
 											},
 											"sink": {
 												"name": "PartNumber",
@@ -574,7 +583,7 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['MfrLabel']"
+												"path": "['MfrLabel']"
 											},
 											"sink": {
 												"name": "MfrLabel",
@@ -583,7 +592,133 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['TransmissionNumSpeeds']['@id']"
+												"path": "['BodyType']['@id']"
+											},
+											"sink": {
+												"name": "BodyTypeID",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "['BodyType']['_value_']"
+											},
+											"sink": {
+												"name": "BodyType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['CylinderHeadType']['@id']"
+											},
+											"sink": {
+												"name": "CylinderHeadTypeID",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "['CylinderHeadType']['_value_']"
+											},
+											"sink": {
+												"name": "CylinderHeadType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['FuelDeliveryType']['@id']"
+											},
+											"sink": {
+												"name": "FuelDeliveryTypeID",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "['FuelDeliveryType']['_value_']"
+											},
+											"sink": {
+												"name": "FuelDeliveryType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['FuelDeliverySubType']['@id']"
+											},
+											"sink": {
+												"name": "FuelDeliverySubTypeID",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "['FuelDeliverySubType']['_value_']"
+											},
+											"sink": {
+												"name": "FuelDeliverySubType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['DriveType']['@id']"
+											},
+											"sink": {
+												"name": "DriveTypeID",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "['DriveType']['_value_']"
+											},
+											"sink": {
+												"name": "DriveType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['Aspiration']['@id']"
+											},
+											"sink": {
+												"name": "AspirationID",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "['Aspiration']['_value_']"
+											},
+											"sink": {
+												"name": "Aspiration",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['FuelType']['@id']"
+											},
+											"sink": {
+												"name": "FuelTypeID",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "['FuelType']['_value_']"
+											},
+											"sink": {
+												"name": "FuelType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['TransmissionNumSpeeds']['@id']"
 											},
 											"sink": {
 												"name": "TransmissionNumSpeedsID",
@@ -592,7 +727,7 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['TransmissionNumSpeeds']['_value_']"
+												"path": "['TransmissionNumSpeeds']['_value_']"
 											},
 											"sink": {
 												"name": "TransmissionNumSpeeds",
@@ -601,7 +736,7 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['EngineDesignation']['@id']"
+												"path": "['EngineDesignation']['@id']"
 											},
 											"sink": {
 												"name": "EngineDesignationID",
@@ -610,7 +745,7 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['EngineDesignation']['_value_']"
+												"path": "['EngineDesignation']['_value_']"
 											},
 											"sink": {
 												"name": "EngineDesignation",
@@ -619,7 +754,7 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['TransmissionControlType']['@id']"
+												"path": "['TransmissionControlType']['@id']"
 											},
 											"sink": {
 												"name": "TransmissionControlTypeID",
@@ -628,7 +763,7 @@
 										},
 										{
 											"source": {
-												"path": "$['ACES']['App'][0]['TransmissionControlType']['_value_']"
+												"path": "['TransmissionControlType']['_value_']"
 											},
 											"sink": {
 												"name": "TransmissionControlType",
@@ -645,7 +780,7 @@
 											}
 										}
 									],
-									"collectionReference": "$['ACES']['App'][0]['Note']",
+									"collectionReference": "$['ACES']['App']",
 									"mapComplexValuesToString": true
 								}
 							},
