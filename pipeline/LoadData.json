@@ -313,158 +313,6 @@
 									"mappings": [
 										{
 											"source": {
-												"path": "['BaseVehicle']['@id']"
-											},
-											"sink": {
-												"name": "BaseVehicleID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['BaseVehicle']['_value_']"
-											},
-											"sink": {
-												"name": "BaseVehicle",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['SubModel']['@id']"
-											},
-											"sink": {
-												"name": "SubModelID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['SubModel']['_value_']"
-											},
-											"sink": {
-												"name": "SubModel",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['EngineBase']['@id']"
-											},
-											"sink": {
-												"name": "EngineBaseID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['EngineBase']['_value_']"
-											},
-											"sink": {
-												"name": "EngineBase",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['EngineVIN']['@id']"
-											},
-											"sink": {
-												"name": "EngineVINID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['EngineVIN']['_value_']"
-											},
-											"sink": {
-												"name": "EngineVIN",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['Region']['@id']"
-											},
-											"sink": {
-												"name": "RegionID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['Region']['_value_']"
-											},
-											"sink": {
-												"name": "Region",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['Note']"
-											},
-											"sink": {
-												"name": "Note"
-											}
-										},
-										{
-											"source": {
-												"path": "['Qty']"
-											},
-											"sink": {
-												"name": "Qty",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['PartType']['@id']"
-											},
-											"sink": {
-												"name": "PartTypeID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['PartType']['_value_']"
-											},
-											"sink": {
-												"name": "PartType",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['Position']['@id']"
-											},
-											"sink": {
-												"name": "PositionID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['Position']['_value_']"
-											},
-											"sink": {
-												"name": "Position",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['Part']"
-											},
-											"sink": {
-												"name": "PartNumber",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
 												"path": "$['ACES']['Header']['Company']"
 											},
 											"sink": {
@@ -582,6 +430,213 @@
 										},
 										{
 											"source": {
+												"path": "$['ACES']['App'][0]['BaseVehicle']['@id']"
+											},
+											"sink": {
+												"name": "BaseVehicleID",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['BaseVehicle']['_value_']"
+											},
+											"sink": {
+												"name": "BaseVehicle",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['SubModel']['@id']"
+											},
+											"sink": {
+												"name": "SubModelID",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['SubModel']['_value_']"
+											},
+											"sink": {
+												"name": "SubModel",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['EngineBase']['@id']"
+											},
+											"sink": {
+												"name": "EngineBaseID",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['EngineBase']['_value_']"
+											},
+											"sink": {
+												"name": "EngineBase",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['EngineVIN']['@id']"
+											},
+											"sink": {
+												"name": "EngineVINID",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['EngineVIN']['_value_']"
+											},
+											"sink": {
+												"name": "EngineVIN",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['Region']['@id']"
+											},
+											"sink": {
+												"name": "RegionID",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['Region']['_value_']"
+											},
+											"sink": {
+												"name": "Region",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['Qty']"
+											},
+											"sink": {
+												"name": "Qty",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['PartType']['@id']"
+											},
+											"sink": {
+												"name": "PartTypeID",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['PartType']['_value_']"
+											},
+											"sink": {
+												"name": "PartType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['Position']['@id']"
+											},
+											"sink": {
+												"name": "PositionID",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['Position']['_value_']"
+											},
+											"sink": {
+												"name": "Position",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['Part']"
+											},
+											"sink": {
+												"name": "PartNumber",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['MfrLabel']"
+											},
+											"sink": {
+												"name": "MfrLabel",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['TransmissionNumSpeeds']['@id']"
+											},
+											"sink": {
+												"name": "TransmissionNumSpeedsID",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['TransmissionNumSpeeds']['_value_']"
+											},
+											"sink": {
+												"name": "TransmissionNumSpeeds",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['EngineDesignation']['@id']"
+											},
+											"sink": {
+												"name": "EngineDesignationID",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['EngineDesignation']['_value_']"
+											},
+											"sink": {
+												"name": "EngineDesignation",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['TransmissionControlType']['@id']"
+											},
+											"sink": {
+												"name": "TransmissionControlTypeID",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['App'][0]['TransmissionControlType']['_value_']"
+											},
+											"sink": {
+												"name": "TransmissionControlType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
 												"path": "$['ACES']['Footer']['RecordCount']"
 											},
 											"sink": {
@@ -590,7 +645,7 @@
 											}
 										}
 									],
-									"collectionReference": "$['ACES']['App']",
+									"collectionReference": "$['ACES']['App'][0]['Note']",
 									"mapComplexValuesToString": true
 								}
 							},
