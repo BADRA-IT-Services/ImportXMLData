@@ -218,7 +218,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "ImportXMLData"
+			"table": "ImportXMLData1"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
