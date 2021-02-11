@@ -312,7 +312,7 @@
 									"type": "Copy",
 									"dependsOn": [],
 									"policy": {
-										"timeout": "22:00:00",
+										"timeout": "7:00:00",
 										"retry": 0,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
@@ -341,12 +341,12 @@
 										"sink": {
 											"type": "AzureSqlSink",
 											"writeBatchSize": 1000,
-											"writeBatchTimeout": "22:55:55",
 											"maxConcurrentConnections": 100,
 											"disableMetricsCollection": false
 										},
 										"enableStaging": false,
 										"parallelCopies": 100,
+										"dataIntegrationUnits": 16,
 										"translator": {
 											"type": "TabularTranslator",
 											"mappings": [
@@ -1173,7 +1173,7 @@
 				],
 				"typeProperties": {
 					"schema": "dbo",
-					"table": "ImportXMLData"
+					"table": "ImportXMLData1"
 				}
 			},
 			"dependsOn": [
