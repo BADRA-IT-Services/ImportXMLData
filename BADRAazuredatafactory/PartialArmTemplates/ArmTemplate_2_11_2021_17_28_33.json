@@ -6,573 +6,12 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "BADRAazuredatafactory"
-		},
-		"AzureFileStorage1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureFileStorage1'"
-		},
-		"EuconLLCDB_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'EuconLLCDB'"
-		},
-		"azuredatasourcedb_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'azuredatasourcedb'"
-		},
-		"importfiles_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'importfiles'"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
-		{
-			"name": "[concat(parameters('factoryName'), '/AutoResolveIntegrationRuntime')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "Managed",
-				"typeProperties": {
-					"computeProperties": {
-						"location": "AutoResolve",
-						"dataFlowProperties": {
-							"computeType": "General",
-							"coreCount": 8,
-							"timeToLive": 0
-						}
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/EuconLLC')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "SelfHosted",
-				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureFileStorage1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureFileStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('AzureFileStorage1_connectionString')]",
-					"fileShare": "importfiles"
-				},
-				"connectVia": {
-					"referenceName": "AutoResolveIntegrationRuntime",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/EuconLLCDB')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('EuconLLCDB_connectionString')]"
-				},
-				"connectVia": {
-					"referenceName": "AutoResolveIntegrationRuntime",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/azuredatasourcedb')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "database name to store the data",
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"connectionString": "[parameters('azuredatasourcedb_connectionString')]"
-				},
-				"connectVia": {
-					"referenceName": "AutoResolveIntegrationRuntime",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/importfiles')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "all the aces, pies, opticat, motorcraft, sales data files are available",
-				"annotations": [],
-				"type": "AzureFileStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('importfiles_connectionString')]",
-					"fileShare": "importfiles"
-				},
-				"connectVia": {
-					"referenceName": "AutoResolveIntegrationRuntime",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/CustomerData')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "importfiles",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "Sheet1",
-					"location": {
-						"type": "AzureFileStorageLocation",
-						"fileName": "2020_Sales_Qtys_Test.xlsx"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/importfiles')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ImportXMData')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "azuredatasourcedb",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ID",
-						"type": "bigint",
-						"precision": 19
-					},
-					{
-						"name": "BaseVehicleID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "BaseVehicle",
-						"type": "nvarchar"
-					},
-					{
-						"name": "EngineBaseID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "EngineBase",
-						"type": "nvarchar"
-					},
-					{
-						"name": "SubModelID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "SubModel",
-						"type": "nvarchar"
-					},
-					{
-						"name": "EngineDesignationID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "EngineDesignation",
-						"type": "nvarchar"
-					},
-					{
-						"name": "EngineVINID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "EngineVIN",
-						"type": "nvarchar"
-					},
-					{
-						"name": "TransmissionControlTypeID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "TransmissionControlType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "TransmissionNumSpeedsID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "TransmissionNumSpeeds",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RegionID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Region",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Note",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Note2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Qty",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "PartTypeID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "PartType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PositionID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Position",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PartNumber",
-						"type": "nvarchar"
-					},
-					{
-						"name": "MfrLabel",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Notes3",
-						"type": "nvarchar"
-					},
-					{
-						"name": "FuelTypeID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "FuelType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "AspirationID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Aspiration",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DriveTypeID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "DriveType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "FuelDeliverySubTypeID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "FuelDeliverySubType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "FuelDeliveryTypeID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "FuelDeliveryType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CylinderHeadTypeID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "CylinderHeadType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "BodyTypeID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "BodyType",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Customer",
-						"type": "nvarchar"
-					},
-					{
-						"name": "BrandAAIAID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "NormPN",
-						"type": "nvarchar"
-					},
-					{
-						"name": "fileName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "fileDate",
-						"type": "date"
-					},
-					{
-						"name": "isDone",
-						"type": "char"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "ImportXMLData1"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/azuredatasourcedb')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/customersalesdata')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "azuredatasourcedb",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "ID",
-						"type": "bigint",
-						"precision": 19
-					},
-					{
-						"name": "PPTCodeDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PartNumber",
-						"type": "nvarchar"
-					},
-					{
-						"name": "NormPN",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PartNoun",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PartDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "GrossSalesAmount",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "SaleQuantity",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ReturnQuantity",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "WarrantyQuantity",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "MajorCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "MajorCodeDescription",
-						"type": "nvarchar"
-					},
-					{
-						"name": "MinorCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "MajorMinor",
-						"type": "nvarchar"
-					},
-					{
-						"name": "NETPrice",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "CorePrice",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "VehicleFamilyCodeStringUS",
-						"type": "nvarchar"
-					},
-					{
-						"name": "VehicleFamilyCodeDescriptionStringUS",
-						"type": "nvarchar"
-					},
-					{
-						"name": "InsertedDate",
-						"type": "date"
-					},
-					{
-						"name": "FileName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "isDone",
-						"type": "char"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "ImportCustomerSales"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/azuredatasourcedb')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/xmlfilename')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureFileStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Xml",
-				"typeProperties": {
-					"location": {
-						"type": "AzureFileStorageLocation",
-						"folderPath": "xmlfiles"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureFileStorage1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/xmlfilessubfolder')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureFileStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Xml",
-				"typeProperties": {
-					"location": {
-						"type": "AzureFileStorageLocation",
-						"folderPath": "xmlfiles"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureFileStorage1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/xmlfilestorage')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "importfiles",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Xml",
-				"typeProperties": {
-					"location": {
-						"type": "AzureFileStorageLocation",
-						"fileName": "HVAC.xml"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/importfiles')]"
-			]
-		},
 		{
 			"name": "[concat(parameters('factoryName'), '/LoadData')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
@@ -821,15 +260,13 @@
 						"inputs": [
 							{
 								"referenceName": "CustomerData",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "customersalesdata",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					},
@@ -1373,15 +810,13 @@
 									"inputs": [
 										{
 											"referenceName": "xmlfilename",
-											"type": "DatasetReference",
-											"parameters": {}
+											"type": "DatasetReference"
 										}
 									],
 									"outputs": [
 										{
 											"referenceName": "ImportXMData",
-											"type": "DatasetReference",
-											"parameters": {}
+											"type": "DatasetReference"
 										}
 									]
 								},
@@ -1407,8 +842,7 @@
 									"typeProperties": {
 										"dataset": {
 											"referenceName": "xmlfilename",
-											"type": "DatasetReference",
-											"parameters": {}
+											"type": "DatasetReference"
 										},
 										"enableLogging": false,
 										"storeSettings": {
@@ -1448,8 +882,7 @@
 						"typeProperties": {
 							"dataset": {
 								"referenceName": "xmlfilessubfolder",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							},
 							"fieldList": [
 								"childItems"
@@ -1465,13 +898,7 @@
 				"annotations": [],
 				"lastPublishTime": "2021-02-09T00:03:41Z"
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/CustomerData')]",
-				"[concat(variables('factoryId'), '/datasets/customersalesdata')]",
-				"[concat(variables('factoryId'), '/datasets/xmlfilessubfolder')]",
-				"[concat(variables('factoryId'), '/datasets/xmlfilename')]",
-				"[concat(variables('factoryId'), '/datasets/ImportXMData')]"
-			]
+			"dependsOn": []
 		}
 	]
 }

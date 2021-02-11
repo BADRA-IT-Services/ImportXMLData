@@ -305,7 +305,8 @@
 								"value": "@activity('Get Metadata1').output.childItems",
 								"type": "Expression"
 							},
-							"isSequential": true,
+							"isSequential": false,
+							"batchCount": 50,
 							"activities": [
 								{
 									"name": "XMLData",
@@ -324,7 +325,7 @@
 											"type": "XmlSource",
 											"storeSettings": {
 												"type": "AzureFileStorageReadSettings",
-												"maxConcurrentConnections": 100,
+												"maxConcurrentConnections": 1000,
 												"recursive": false,
 												"wildcardFileName": {
 													"value": "@item().name",
@@ -341,11 +342,12 @@
 										"sink": {
 											"type": "AzureSqlSink",
 											"writeBatchSize": 1000,
-											"maxConcurrentConnections": 100,
-											"disableMetricsCollection": false
+											"maxConcurrentConnections": 1000,
+											"tableOption": "autoCreate",
+											"disableMetricsCollection": true
 										},
 										"enableStaging": false,
-										"parallelCopies": 100,
+										"parallelCopies": 1000,
 										"dataIntegrationUnits": 16,
 										"translator": {
 											"type": "TabularTranslator",
