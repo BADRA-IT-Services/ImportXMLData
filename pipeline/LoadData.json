@@ -562,7 +562,18 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"enableLogging": false,
+								"dataset": {
+									"referenceName": "Azure_XML_FILE_FOLDER",
+									"type": "DatasetReference"
+								},
+								"logStorageSettings": {
+									"linkedServiceName": {
+										"referenceName": "azureblobstorageforinputfiles",
+										"type": "LinkedServiceReference"
+									},
+									"path": "importxmlfiles"
+								},
+								"enableLogging": true,
 								"storeSettings": {
 									"type": "AzureFileStorageReadSettings",
 									"recursive": true,
