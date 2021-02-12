@@ -256,6 +256,15 @@
 			{
 				"name": "isDone",
 				"type": "char"
+			},
+			{
+				"name": "TransmissionBaseID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TransmissionBase",
+				"type": "nvarchar"
 			}
 		],
 		"typeProperties": {
