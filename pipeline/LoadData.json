@@ -53,7 +53,6 @@
 									"type": "AzureSqlSink",
 									"writeBatchSize": 1000,
 									"maxConcurrentConnections": 1000,
-									"tableOption": "autoCreate",
 									"disableMetricsCollection": true
 								},
 								"enableStaging": false,
