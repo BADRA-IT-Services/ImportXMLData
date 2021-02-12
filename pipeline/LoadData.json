@@ -35,20 +35,6 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"source": {
-									"type": "XmlSource",
-									"storeSettings": {
-										"type": "AzureBlobStorageReadSettings",
-										"maxConcurrentConnections": 1000,
-										"fileListPath": "importxmlfiles",
-										"enablePartitionDiscovery": false
-									},
-									"formatSettings": {
-										"type": "XmlReadSettings",
-										"validationMode": "none",
-										"namespaces": true
-									}
-								},
 								"sink": {
 									"type": "AzureSqlSink",
 									"writeBatchSize": 1000,
@@ -529,17 +515,9 @@
 												"type": "Int32"
 											}
 										}
-									],
-									"collectionReference": "$['ACES']['App']",
-									"mapComplexValuesToString": true
+									]
 								}
 							},
-							"inputs": [
-								{
-									"referenceName": "inputxmlfilelocation",
-									"type": "DatasetReference"
-								}
-							],
 							"outputs": [
 								{
 									"referenceName": "ImportXMData",
@@ -567,10 +545,6 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"dataset": {
-									"referenceName": "inputxmlfilelocation",
-									"type": "DatasetReference"
-								},
 								"enableLogging": false,
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
@@ -600,12 +574,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "inputxmlfilelocation",
+						"referenceName": "xmlinputfolder",
 						"type": "DatasetReference"
 					},
-					"fieldList": [
-						"childItems"
-					],
+					"fieldList": [],
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
 						"enablePartitionDiscovery": false

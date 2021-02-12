@@ -1,0 +1,17 @@
+{
+	"name": "xmlinputfolder",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "azureblobstorageforinputfiles",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Xml",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "importxmlfiles"
+			}
+		}
+	}
+}
