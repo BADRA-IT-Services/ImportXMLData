@@ -3,597 +3,11 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "LoopXMLFiles",
-				"type": "ForEach",
-				"dependsOn": [
-					{
-						"activity": "LoadAllXMLFiles",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@activity('LoadAllXMLFiles').output.values",
-						"type": "Expression"
-					},
-					"isSequential": false,
-					"batchCount": 25,
-					"activities": [
-						{
-							"name": "XMLData",
-							"type": "Copy",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"source": {
-									"type": "XmlSource",
-									"storeSettings": {
-										"type": "AzureFileStorageReadSettings",
-										"fileListPath": "xmlfiles",
-										"enablePartitionDiscovery": false
-									},
-									"formatSettings": {
-										"type": "XmlReadSettings",
-										"validationMode": "none",
-										"namespaces": true
-									}
-								},
-								"sink": {
-									"type": "AzureSqlSink"
-								},
-								"enableStaging": false,
-								"parallelCopies": 25,
-								"dataIntegrationUnits": 8,
-								"translator": {
-									"type": "TabularTranslator",
-									"mappings": [
-										{
-											"source": {
-												"path": "['BaseVehicle']['@id']"
-											},
-											"sink": {
-												"name": "BaseVehicleID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['BaseVehicle']['_value_']"
-											},
-											"sink": {
-												"name": "BaseVehicle",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['SubModel']['@id']"
-											},
-											"sink": {
-												"name": "SubModelID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['SubModel']['_value_']"
-											},
-											"sink": {
-												"name": "SubModel",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['EngineBase']['@id']"
-											},
-											"sink": {
-												"name": "EngineBaseID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['EngineBase']['_value_']"
-											},
-											"sink": {
-												"name": "EngineBase",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['EngineVIN']['@id']"
-											},
-											"sink": {
-												"name": "EngineVINID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['EngineVIN']['_value_']"
-											},
-											"sink": {
-												"name": "EngineVIN",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['Region']['@id']"
-											},
-											"sink": {
-												"name": "RegionID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['Region']['_value_']"
-											},
-											"sink": {
-												"name": "Region",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['Qty']"
-											},
-											"sink": {
-												"name": "Qty",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['PartType']['@id']"
-											},
-											"sink": {
-												"name": "PartTypeID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['PartType']['_value_']"
-											},
-											"sink": {
-												"name": "PartType",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['Position']['@id']"
-											},
-											"sink": {
-												"name": "PositionID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['Position']['_value_']"
-											},
-											"sink": {
-												"name": "Position",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['Part']"
-											},
-											"sink": {
-												"name": "PartNumber",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['MfrLabel']"
-											},
-											"sink": {
-												"name": "MfrLabel",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['BodyType']['@id']"
-											},
-											"sink": {
-												"name": "BodyTypeID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['BodyType']['_value_']"
-											},
-											"sink": {
-												"name": "BodyType",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['CylinderHeadType']['@id']"
-											},
-											"sink": {
-												"name": "CylinderHeadTypeID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['CylinderHeadType']['_value_']"
-											},
-											"sink": {
-												"name": "CylinderHeadType",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['FuelDeliveryType']['@id']"
-											},
-											"sink": {
-												"name": "FuelDeliveryTypeID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['FuelDeliveryType']['_value_']"
-											},
-											"sink": {
-												"name": "FuelDeliveryType",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['FuelDeliverySubType']['@id']"
-											},
-											"sink": {
-												"name": "FuelDeliverySubTypeID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['FuelDeliverySubType']['_value_']"
-											},
-											"sink": {
-												"name": "FuelDeliverySubType",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['DriveType']['@id']"
-											},
-											"sink": {
-												"name": "DriveTypeID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['DriveType']['_value_']"
-											},
-											"sink": {
-												"name": "DriveType",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['Aspiration']['@id']"
-											},
-											"sink": {
-												"name": "AspirationID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['Aspiration']['_value_']"
-											},
-											"sink": {
-												"name": "Aspiration",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['FuelType']['@id']"
-											},
-											"sink": {
-												"name": "FuelTypeID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['FuelType']['_value_']"
-											},
-											"sink": {
-												"name": "FuelType",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['TransmissionNumSpeeds']['@id']"
-											},
-											"sink": {
-												"name": "TransmissionNumSpeedsID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['TransmissionNumSpeeds']['_value_']"
-											},
-											"sink": {
-												"name": "TransmissionNumSpeeds",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['EngineDesignation']['@id']"
-											},
-											"sink": {
-												"name": "EngineDesignationID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['EngineDesignation']['_value_']"
-											},
-											"sink": {
-												"name": "EngineDesignation",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['TransmissionControlType']['@id']"
-											},
-											"sink": {
-												"name": "TransmissionControlTypeID",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['TransmissionControlType']['_value_']"
-											},
-											"sink": {
-												"name": "TransmissionControlType",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['Note']"
-											},
-											"sink": {
-												"name": "Note"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['Company']"
-											},
-											"sink": {
-												"name": "Customer",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['SenderName']"
-											},
-											"sink": {
-												"name": "SenderName",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['SenderPhone']"
-											},
-											"sink": {
-												"name": "SenderPhone",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['TransferDate']"
-											},
-											"sink": {
-												"name": "TransferDate",
-												"type": "DateTime"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['BrandAAIAID']"
-											},
-											"sink": {
-												"name": "BrandAAIAID",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['DocumentTitle']"
-											},
-											"sink": {
-												"name": "DocumentTitle",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['DocFormNumber']"
-											},
-											"sink": {
-												"name": "DocFormNumber",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['EffectiveDate']"
-											},
-											"sink": {
-												"name": "EffectiveDate",
-												"type": "DateTime"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['ApprovedFor']"
-											},
-											"sink": {
-												"name": "ApprovedFor",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['SubmissionType']"
-											},
-											"sink": {
-												"name": "SubmissionType",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['VcdbVersionDate']"
-											},
-											"sink": {
-												"name": "VcdbVersionDate",
-												"type": "DateTime"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['QdbVersionDate']"
-											},
-											"sink": {
-												"name": "QdbVersionDate",
-												"type": "DateTime"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['PcdbVersionDate']"
-											},
-											"sink": {
-												"name": "PcdbVersionDate",
-												"type": "DateTime"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Footer']['RecordCount']"
-											},
-											"sink": {
-												"name": "TotalRecordCount",
-												"type": "Int32"
-											}
-										}
-									],
-									"collectionReference": "$['ACES']['App']",
-									"mapComplexValuesToString": true
-								}
-							},
-							"inputs": [
-								{
-									"referenceName": "Azure_XML_FILE_FOLDER",
-									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "AZURE_SQL_DB",
-									"type": "DatasetReference"
-								}
-							]
-						},
-						{
-							"name": "Deletefile",
-							"type": "Delete",
-							"dependsOn": [
-								{
-									"activity": "XMLData",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"policy": {
-								"timeout": "",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"dataset": {
-									"referenceName": "Azure_XML_FILE_FOLDER",
-									"type": "DatasetReference"
-								},
-								"logStorageSettings": {
-									"linkedServiceName": {
-										"referenceName": "azureblobstorageforinputfiles",
-										"type": "LinkedServiceReference"
-									},
-									"path": "importxmlfiles"
-								},
-								"enableLogging": true,
-								"storeSettings": {
-									"type": "AzureFileStorageReadSettings",
-									"recursive": true,
-									"wildcardFileName": {
-										"value": "@{item().name}",
-										"type": "Expression"
-									},
-									"enablePartitionDiscovery": false
-								}
-							}
-						}
-					]
-				}
-			},
-			{
-				"name": "LoadAllXMLFiles",
-				"type": "Lookup",
+				"name": "XMLData",
+				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
-					"timeout": "7.00:00:00",
+					"timeout": "",
 					"retry": 0,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
@@ -614,11 +28,499 @@
 							"namespaces": true
 						}
 					},
-					"dataset": {
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"parallelCopies": 25,
+					"dataIntegrationUnits": 8,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['BaseVehicle']['@id']"
+								},
+								"sink": {
+									"name": "BaseVehicleID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['BaseVehicle']['_value_']"
+								},
+								"sink": {
+									"name": "BaseVehicle",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SubModel']['@id']"
+								},
+								"sink": {
+									"name": "SubModelID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['SubModel']['_value_']"
+								},
+								"sink": {
+									"name": "SubModel",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['EngineBase']['@id']"
+								},
+								"sink": {
+									"name": "EngineBaseID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['EngineBase']['_value_']"
+								},
+								"sink": {
+									"name": "EngineBase",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['EngineVIN']['@id']"
+								},
+								"sink": {
+									"name": "EngineVINID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['EngineVIN']['_value_']"
+								},
+								"sink": {
+									"name": "EngineVIN",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Region']['@id']"
+								},
+								"sink": {
+									"name": "RegionID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['Region']['_value_']"
+								},
+								"sink": {
+									"name": "Region",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Qty']"
+								},
+								"sink": {
+									"name": "Qty",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['PartType']['@id']"
+								},
+								"sink": {
+									"name": "PartTypeID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['PartType']['_value_']"
+								},
+								"sink": {
+									"name": "PartType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Position']['@id']"
+								},
+								"sink": {
+									"name": "PositionID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['Position']['_value_']"
+								},
+								"sink": {
+									"name": "Position",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Part']"
+								},
+								"sink": {
+									"name": "PartNumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['MfrLabel']"
+								},
+								"sink": {
+									"name": "MfrLabel",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['BodyType']['@id']"
+								},
+								"sink": {
+									"name": "BodyTypeID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['BodyType']['_value_']"
+								},
+								"sink": {
+									"name": "BodyType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['CylinderHeadType']['@id']"
+								},
+								"sink": {
+									"name": "CylinderHeadTypeID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['CylinderHeadType']['_value_']"
+								},
+								"sink": {
+									"name": "CylinderHeadType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['FuelDeliveryType']['@id']"
+								},
+								"sink": {
+									"name": "FuelDeliveryTypeID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['FuelDeliveryType']['_value_']"
+								},
+								"sink": {
+									"name": "FuelDeliveryType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['FuelDeliverySubType']['@id']"
+								},
+								"sink": {
+									"name": "FuelDeliverySubTypeID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['FuelDeliverySubType']['_value_']"
+								},
+								"sink": {
+									"name": "FuelDeliverySubType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['DriveType']['@id']"
+								},
+								"sink": {
+									"name": "DriveTypeID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['DriveType']['_value_']"
+								},
+								"sink": {
+									"name": "DriveType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Aspiration']['@id']"
+								},
+								"sink": {
+									"name": "AspirationID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['Aspiration']['_value_']"
+								},
+								"sink": {
+									"name": "Aspiration",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['FuelType']['@id']"
+								},
+								"sink": {
+									"name": "FuelTypeID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['FuelType']['_value_']"
+								},
+								"sink": {
+									"name": "FuelType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['TransmissionNumSpeeds']['@id']"
+								},
+								"sink": {
+									"name": "TransmissionNumSpeedsID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['TransmissionNumSpeeds']['_value_']"
+								},
+								"sink": {
+									"name": "TransmissionNumSpeeds",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['EngineDesignation']['@id']"
+								},
+								"sink": {
+									"name": "EngineDesignationID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['EngineDesignation']['_value_']"
+								},
+								"sink": {
+									"name": "EngineDesignation",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['TransmissionControlType']['@id']"
+								},
+								"sink": {
+									"name": "TransmissionControlTypeID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['TransmissionControlType']['_value_']"
+								},
+								"sink": {
+									"name": "TransmissionControlType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Note']"
+								},
+								"sink": {
+									"name": "Note"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ACES']['Header']['Company']"
+								},
+								"sink": {
+									"name": "Customer",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ACES']['Header']['SenderName']"
+								},
+								"sink": {
+									"name": "SenderName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ACES']['Header']['SenderPhone']"
+								},
+								"sink": {
+									"name": "SenderPhone",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ACES']['Header']['TransferDate']"
+								},
+								"sink": {
+									"name": "TransferDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ACES']['Header']['BrandAAIAID']"
+								},
+								"sink": {
+									"name": "BrandAAIAID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ACES']['Header']['DocumentTitle']"
+								},
+								"sink": {
+									"name": "DocumentTitle",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ACES']['Header']['DocFormNumber']"
+								},
+								"sink": {
+									"name": "DocFormNumber",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ACES']['Header']['EffectiveDate']"
+								},
+								"sink": {
+									"name": "EffectiveDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ACES']['Header']['ApprovedFor']"
+								},
+								"sink": {
+									"name": "ApprovedFor",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ACES']['Header']['SubmissionType']"
+								},
+								"sink": {
+									"name": "SubmissionType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ACES']['Header']['VcdbVersionDate']"
+								},
+								"sink": {
+									"name": "VcdbVersionDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ACES']['Header']['QdbVersionDate']"
+								},
+								"sink": {
+									"name": "QdbVersionDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ACES']['Header']['PcdbVersionDate']"
+								},
+								"sink": {
+									"name": "PcdbVersionDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ACES']['Footer']['RecordCount']"
+								},
+								"sink": {
+									"name": "TotalRecordCount",
+									"type": "Int32"
+								}
+							}
+						],
+						"collectionReference": "$['ACES']['App']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
 						"referenceName": "Azure_XML_FILE_FOLDER",
 						"type": "DatasetReference"
 					}
-				}
+				],
+				"outputs": [
+					{
+						"referenceName": "AZURE_SQL_DB",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": [],
