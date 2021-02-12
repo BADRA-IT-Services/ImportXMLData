@@ -7,7 +7,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Get Metadata1",
+						"activity": "LoanXMLFileFoldeer",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Get Metadata1').output.childItems",
+						"value": "@activity('LoanXMLFileFoldeer').output.childItems",
 						"type": "Expression"
 					},
 					"isSequential": false,
@@ -587,11 +587,11 @@
 				}
 			},
 			{
-				"name": "Get Metadata1",
+				"name": "LoanXMLFileFoldeer",
 				"type": "GetMetadata",
 				"dependsOn": [],
 				"policy": {
-					"timeout": "7.00:00:00",
+					"timeout": "24.00:00:00",
 					"retry": 0,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
@@ -603,7 +603,9 @@
 						"referenceName": "inputxmlfilelocation",
 						"type": "DatasetReference"
 					},
-					"fieldList": [],
+					"fieldList": [
+						"childItems"
+					],
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
 						"enablePartitionDiscovery": false
