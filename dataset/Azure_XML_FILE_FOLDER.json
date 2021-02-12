@@ -1,0 +1,17 @@
+{
+	"name": "Azure_XML_FILE_FOLDER",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureFileStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Xml",
+		"typeProperties": {
+			"location": {
+				"type": "AzureFileStorageLocation",
+				"folderPath": "xmlfiles"
+			}
+		}
+	}
+}

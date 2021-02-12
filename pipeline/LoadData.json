@@ -7,7 +7,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "LoanXMLFileFoldeer",
+						"activity": "LoanXMLFileFolder",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('LoanXMLFileFoldeer').output.childItems",
+						"value": "@activity('LoanXMLFileFolder').output.childItems",
 						"type": "Expression"
 					},
 					"isSequential": false,
@@ -38,8 +38,8 @@
 								"source": {
 									"type": "XmlSource",
 									"storeSettings": {
-										"type": "AzureBlobStorageReadSettings",
-										"fileListPath": "importxmlfiles",
+										"type": "AzureFileStorageReadSettings",
+										"fileListPath": "xmlfiles",
 										"enablePartitionDiscovery": false
 									},
 									"formatSettings": {
@@ -49,10 +49,7 @@
 									}
 								},
 								"sink": {
-									"type": "AzureSqlSink",
-									"writeBatchSize": 1000,
-									"maxConcurrentConnections": 1000,
-									"disableMetricsCollection": false
+									"type": "AzureSqlSink"
 								},
 								"enableStaging": false,
 								"parallelCopies": 25,
@@ -398,8 +395,7 @@
 												"path": "['Note']"
 											},
 											"sink": {
-												"name": "Note",
-												"type": "String"
+												"name": "Note"
 											}
 										},
 										{
@@ -535,13 +531,13 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "xmlinputfolder",
+									"referenceName": "Azure_XML_FILE_FOLDER",
 									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
 								{
-									"referenceName": "ImportXMData",
+									"referenceName": "AZURE_SQL_DB",
 									"type": "DatasetReference"
 								}
 							]
@@ -566,13 +562,9 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"dataset": {
-									"referenceName": "xmlinputfolder",
-									"type": "DatasetReference"
-								},
 								"enableLogging": false,
 								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
+									"type": "AzureFileStorageReadSettings",
 									"recursive": true,
 									"wildcardFileName": {
 										"value": "@{item().name}",
@@ -586,7 +578,7 @@
 				}
 			},
 			{
-				"name": "LoanXMLFileFoldeer",
+				"name": "LoanXMLFileFolder",
 				"type": "GetMetadata",
 				"dependsOn": [],
 				"policy": {
@@ -599,14 +591,14 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "xmlinputfolder",
+						"referenceName": "Azure_XML_FILE_FOLDER",
 						"type": "DatasetReference"
 					},
 					"fieldList": [
 						"childItems"
 					],
 					"storeSettings": {
-						"type": "AzureBlobStorageReadSettings",
+						"type": "AzureFileStorageReadSettings",
 						"enablePartitionDiscovery": false
 					}
 				}
