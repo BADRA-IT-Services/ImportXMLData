@@ -1,0 +1,266 @@
+{
+	"name": "AZURE_SQL_DB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "azuredatasourcedb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "BaseVehicleID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BaseVehicle",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EngineBaseID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "EngineBase",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SubModelID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SubModel",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EngineDesignationID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "EngineDesignation",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EngineVINID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "EngineVIN",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransmissionControlTypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TransmissionControlType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransmissionNumSpeedsID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TransmissionNumSpeeds",
+				"type": "nvarchar"
+			},
+			{
+				"name": "RegionID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Region",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Note",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Note2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Qty",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PartTypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PartType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PositionID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Position",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PartNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MfrLabel",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Notes3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FuelTypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FuelType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AspirationID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Aspiration",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DriveTypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DriveType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FuelDeliverySubTypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FuelDeliverySubType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FuelDeliveryTypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FuelDeliveryType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CylinderHeadTypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CylinderHeadType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BodyTypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BodyType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Customer",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SenderName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SenderPhone",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TransferDate",
+				"type": "date"
+			},
+			{
+				"name": "BrandAAIAID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocumentTitle",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DocFormNumber",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "EffectiveDate",
+				"type": "date"
+			},
+			{
+				"name": "ApprovedFor",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SubmissionType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "VcdbVersionDate",
+				"type": "date"
+			},
+			{
+				"name": "QdbVersionDate",
+				"type": "date"
+			},
+			{
+				"name": "PcdbVersionDate",
+				"type": "date"
+			},
+			{
+				"name": "TotalRecordCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NormPN",
+				"type": "nvarchar"
+			},
+			{
+				"name": "isDone",
+				"type": "char"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ImportXMLData1"
+		}
+	}
+}
