@@ -35,6 +35,19 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
+								"source": {
+									"type": "XmlSource",
+									"storeSettings": {
+										"type": "AzureBlobStorageReadSettings",
+										"fileListPath": "importxmlfiles",
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "XmlReadSettings",
+										"validationMode": "none",
+										"namespaces": true
+									}
+								},
 								"sink": {
 									"type": "AzureSqlSink",
 									"writeBatchSize": 1000,
@@ -515,9 +528,17 @@
 												"type": "Int32"
 											}
 										}
-									]
+									],
+									"collectionReference": "$['ACES']['App']",
+									"mapComplexValuesToString": true
 								}
 							},
+							"inputs": [
+								{
+									"referenceName": "xmlinputfolder",
+									"type": "DatasetReference"
+								}
+							],
 							"outputs": [
 								{
 									"referenceName": "ImportXMData",
@@ -545,6 +566,10 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
+								"dataset": {
+									"referenceName": "xmlinputfolder",
+									"type": "DatasetReference"
+								},
 								"enableLogging": false,
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
@@ -577,7 +602,9 @@
 						"referenceName": "xmlinputfolder",
 						"type": "DatasetReference"
 					},
-					"fieldList": [],
+					"fieldList": [
+						"childItems"
+					],
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
 						"enablePartitionDiscovery": false
