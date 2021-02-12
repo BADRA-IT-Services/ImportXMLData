@@ -3,258 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "ReadExcelFileData",
-				"type": "Copy",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [
-					{
-						"name": "Source",
-						"value": "/2020_Sales_Qtys_Test.xlsx"
-					}
-				],
-				"typeProperties": {
-					"source": {
-						"type": "ExcelSource",
-						"storeSettings": {
-							"type": "AzureFileStorageReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						}
-					},
-					"sink": {
-						"type": "AzureSqlSink"
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"name": "PPT Code Description",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "PPTCodeDescription",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Part Number",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "PartNumber",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Part Noun",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "PartNoun",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Part Description",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "PartDescription",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Gross Sales Amount",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "GrossSalesAmount",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 4,
-									"precision": 18
-								}
-							},
-							{
-								"source": {
-									"name": "Sale Quantity",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "SaleQuantity",
-									"type": "Int32",
-									"physicalType": "int"
-								}
-							},
-							{
-								"source": {
-									"name": "Return Quantity",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "ReturnQuantity",
-									"type": "Int32",
-									"physicalType": "int"
-								}
-							},
-							{
-								"source": {
-									"name": "Warranty Quantity",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "WarrantyQuantity",
-									"type": "Int32",
-									"physicalType": "int"
-								}
-							},
-							{
-								"source": {
-									"name": "Major Code",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "MajorCode",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Major Code Description",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "MajorCodeDescription",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Minor Code",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "MinorCode",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"name": "MajorMinor",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "MajorMinor",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"name": "QP1 - Dealer Net Price CURRENT",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "NETPrice",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 4,
-									"precision": 18
-								}
-							},
-							{
-								"source": {
-									"name": "Core Charge",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "CorePrice",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 4,
-									"precision": 18
-								}
-							},
-							{
-								"source": {
-									"name": "Vehicle Family Code String US",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "VehicleFamilyCodeStringUS",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Vehicle Family Code Description String US",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "VehicleFamilyCodeDescriptionStringUS",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							}
-						],
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "CustomerData",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "customersalesdata",
-						"type": "DatasetReference"
-					}
-				]
-			},
-			{
 				"name": "LoopXMLFiles",
 				"type": "ForEach",
 				"dependsOn": [
@@ -279,7 +27,7 @@
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
-								"timeout": "7:00:00",
+								"timeout": "",
 								"retry": 0,
 								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
@@ -290,13 +38,9 @@
 								"source": {
 									"type": "XmlSource",
 									"storeSettings": {
-										"type": "AzureFileStorageReadSettings",
+										"type": "AzureBlobStorageReadSettings",
 										"maxConcurrentConnections": 1000,
-										"recursive": false,
-										"wildcardFileName": {
-											"value": "@item().name",
-											"type": "Expression"
-										},
+										"fileListPath": "importxmlfiles",
 										"enablePartitionDiscovery": false
 									},
 									"formatSettings": {
@@ -313,128 +57,11 @@
 									"disableMetricsCollection": true
 								},
 								"enableStaging": false,
-								"parallelCopies": 1000,
-								"dataIntegrationUnits": 16,
+								"parallelCopies": 25,
+								"dataIntegrationUnits": 8,
 								"translator": {
 									"type": "TabularTranslator",
 									"mappings": [
-										{
-											"source": {
-												"path": "$['ACES']['Header']['Company']"
-											},
-											"sink": {
-												"name": "Customer",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['SenderName']"
-											},
-											"sink": {
-												"name": "SenderName",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['SenderPhone']"
-											},
-											"sink": {
-												"name": "SenderPhone",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['TransferDate']"
-											},
-											"sink": {
-												"name": "TransferDate",
-												"type": "DateTime"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['BrandAAIAID']"
-											},
-											"sink": {
-												"name": "BrandAAIAID",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['DocumentTitle']"
-											},
-											"sink": {
-												"name": "DocumentTitle",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['DocFormNumber']"
-											},
-											"sink": {
-												"name": "DocFormNumber",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['EffectiveDate']"
-											},
-											"sink": {
-												"name": "EffectiveDate",
-												"type": "DateTime"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['ApprovedFor']"
-											},
-											"sink": {
-												"name": "ApprovedFor",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['SubmissionType']"
-											},
-											"sink": {
-												"name": "SubmissionType",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['VcdbVersionDate']"
-											},
-											"sink": {
-												"name": "VcdbVersionDate",
-												"type": "DateTime"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['QdbVersionDate']"
-											},
-											"sink": {
-												"name": "QdbVersionDate",
-												"type": "DateTime"
-											}
-										},
-										{
-											"source": {
-												"path": "$['ACES']['Header']['PcdbVersionDate']"
-											},
-											"sink": {
-												"name": "PcdbVersionDate",
-												"type": "DateTime"
-											}
-										},
 										{
 											"source": {
 												"path": "['BaseVehicle']['@id']"
@@ -532,15 +159,6 @@
 											"sink": {
 												"name": "Qty",
 												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "['Note']"
-											},
-											"sink": {
-												"name": "Note",
-												"type": "String"
 											}
 										},
 										{
@@ -779,6 +397,132 @@
 										},
 										{
 											"source": {
+												"path": "['Note']"
+											},
+											"sink": {
+												"name": "Note",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['Header']['Company']"
+											},
+											"sink": {
+												"name": "Customer",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['Header']['SenderName']"
+											},
+											"sink": {
+												"name": "SenderName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['Header']['SenderPhone']"
+											},
+											"sink": {
+												"name": "SenderPhone",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['Header']['TransferDate']"
+											},
+											"sink": {
+												"name": "TransferDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['Header']['BrandAAIAID']"
+											},
+											"sink": {
+												"name": "BrandAAIAID",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['Header']['DocumentTitle']"
+											},
+											"sink": {
+												"name": "DocumentTitle",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['Header']['DocFormNumber']"
+											},
+											"sink": {
+												"name": "DocFormNumber",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['Header']['EffectiveDate']"
+											},
+											"sink": {
+												"name": "EffectiveDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['Header']['ApprovedFor']"
+											},
+											"sink": {
+												"name": "ApprovedFor",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['Header']['SubmissionType']"
+											},
+											"sink": {
+												"name": "SubmissionType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['Header']['VcdbVersionDate']"
+											},
+											"sink": {
+												"name": "VcdbVersionDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['Header']['QdbVersionDate']"
+											},
+											"sink": {
+												"name": "QdbVersionDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ACES']['Header']['PcdbVersionDate']"
+											},
+											"sink": {
+												"name": "PcdbVersionDate",
+												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
 												"path": "$['ACES']['Footer']['RecordCount']"
 											},
 											"sink": {
@@ -793,7 +537,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "xmlfilename",
+									"referenceName": "inputxmlfilelocation",
 									"type": "DatasetReference"
 								}
 							],
@@ -816,7 +560,7 @@
 								}
 							],
 							"policy": {
-								"timeout": "7.00:00:00",
+								"timeout": "",
 								"retry": 0,
 								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
@@ -825,12 +569,12 @@
 							"userProperties": [],
 							"typeProperties": {
 								"dataset": {
-									"referenceName": "xmlfilename",
+									"referenceName": "inputxmlfilelocation",
 									"type": "DatasetReference"
 								},
 								"enableLogging": false,
 								"storeSettings": {
-									"type": "AzureFileStorageReadSettings",
+									"type": "AzureBlobStorageReadSettings",
 									"recursive": true,
 									"wildcardFileName": {
 										"value": "@{item().name}",
@@ -846,15 +590,7 @@
 			{
 				"name": "Get Metadata1",
 				"type": "GetMetadata",
-				"dependsOn": [
-					{
-						"activity": "ReadExcelFileData",
-						"dependencyConditions": [
-							"Succeeded",
-							"Failed"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -865,15 +601,14 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "xmlfilessubfolder",
+						"referenceName": "inputxmlfilelocation",
 						"type": "DatasetReference"
 					},
 					"fieldList": [
 						"childItems"
 					],
 					"storeSettings": {
-						"type": "AzureFileStorageReadSettings",
-						"recursive": true,
+						"type": "AzureBlobStorageReadSettings",
 						"enablePartitionDiscovery": false
 					}
 				}
