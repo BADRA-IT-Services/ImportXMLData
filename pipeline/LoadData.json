@@ -7,7 +7,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "LoanXMLFileFolder",
+						"activity": "LoadAllXMLFiles",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('LoanXMLFileFolder').output.childItems",
+						"value": "@activity('LoadAllXMLFiles').output.values",
 						"type": "Expression"
 					},
 					"isSequential": false,
@@ -589,11 +589,11 @@
 				}
 			},
 			{
-				"name": "LoanXMLFileFolder",
-				"type": "GetMetadata",
+				"name": "LoadAllXMLFiles",
+				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
-					"timeout": "24.00:00:00",
+					"timeout": "7.00:00:00",
 					"retry": 0,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
@@ -601,16 +601,22 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "XmlSource",
+						"storeSettings": {
+							"type": "AzureFileStorageReadSettings",
+							"fileListPath": "xmlfiles",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "XmlReadSettings",
+							"validationMode": "none",
+							"namespaces": true
+						}
+					},
 					"dataset": {
 						"referenceName": "Azure_XML_FILE_FOLDER",
 						"type": "DatasetReference"
-					},
-					"fieldList": [
-						"childItems"
-					],
-					"storeSettings": {
-						"type": "AzureFileStorageReadSettings",
-						"enablePartitionDiscovery": false
 					}
 				}
 			}
